@@ -3,13 +3,13 @@ body {
 }
 
 img{
-    max-width: 100%;
+    /* max-width: 100%; */
 }
 
 div.container{
     /* border: 1px solid red; */
 }
-div.col-sm-12{
+div.title{
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -19,11 +19,6 @@ div.col-sm-12{
     padding-right: 0px;
 }
 
-div.col-4{
-    border: 1px solid blue;
-    box-sizing: border-box;
-    /* text-align: center; */
-}
 div.col-md-2{
     border: 1px solid blue;
     box-sizing: border-box;
@@ -37,17 +32,22 @@ div.main_img{
 }
 
 div.imgbox{
-    text-align: center;
+    /* text-align: center; */
+    /* padding: 0 100px 0 0; */
 }
 
 img.class_img{
     height: 100px;
     width: 100px;
     /* text-align: center; */
+    /* float: left; */
 }
 
 span.class_text{
     /* text-align: center; */
+    position: relative;
+    top: 80px;
+    right: 100px;
 }
 
 div.carousel{
@@ -56,7 +56,7 @@ div.carousel{
 div.classrow{
     margin-top: 20px;
 }
-div span.introduction_text{
-    font-size:12px;
-    text-align:left;
+p.introduction_text{
+    font-size:14px;
+    /* text-align:left; */
 }
