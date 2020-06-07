@@ -1,0 +1,24 @@
+body {
+    overflow-x: hidden;
+    font-family: 'Noto Serif TC', serif;
+    background-color: #F3F2F2;
+}
+
+/* 麵包屑 */
+
+nav.my_breadcrumb ol.breadcrumb .breadcrumb-item+.breadcrumb-item::before {
+    content: ">";
+}
+
+nav.my_breadcrumb ol.breadcrumb .breadcrumb-item.active {
+    /* color: white; */
+    /* font-size: 24px; */
+}
+
+/* 骨頭 */
+
+img.bone {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
