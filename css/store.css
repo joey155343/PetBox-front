@@ -9,6 +9,7 @@ img{
 div.container{
     /* border: 1px solid red; */
 }
+
 div.title{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -19,44 +20,79 @@ div.title{
     padding-right: 0px;
 }
 
-div.col-md-2{
-    border: 1px solid blue;
-    box-sizing: border-box;
-    /* text-align: center; */
-}
-
 div.main_img{
     padding: 20,0px;
     max-width: 800px; 
     max-height: 800px; 
 }
 
+div.carousel{
+    margin: 0 auto;
+}
+/* 五種分類圖區域 置中.固定寬度 */
 div.imgbox{
-    /* text-align: center; */
-    /* padding: 0 100px 0 0; */
+    text-align: center;
+    min-width: 100px;
+    height: 125px;
+    padding: 0 0;
 }
 
 img.class_img{
     height: 100px;
     width: 100px;
-    /* text-align: center; */
-    /* float: left; */
+    margin-bottom: 5px;
 }
 
-span.class_text{
-    /* text-align: center; */
-    position: relative;
-    top: 80px;
-    right: 100px;
-}
-
-div.carousel{
-    margin: 0 auto;
-}
 div.classrow{
     margin-top: 20px;
 }
+span.class_text{
+  font-weight:bold;
+}
+
 p.introduction_text{
     font-size:14px;
-    /* text-align:left; */
+    margin-left: 5px;
+    margin-top: 15px;
 }
+/* 平均顯示五個 */
+.col-sm-5ths, .col-md-5ths, .col-lg-5ths {
+    position: relative;
+    min-height: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    /* border: 1px solid yellow; */
+    
+  }
+  @media ( min-width : 768px) {
+    .col-sm-5ths {
+      width: 20%;
+      float: left;
+    }
+  }
+  @media ( min-width : 992px) {
+    .col-md-5ths {
+      width: 20%;
+    }
+  }
+  @media ( min-width : 1200px) {
+    .col-lg-5ths {
+      width: 20%;
+    }
+  }
+/* 改變框格左右-15的問題 */
+.row{
+ margin: 0 0 10px 0;
+ /* 上下排版時的間距10 */
+}
+.col-3{
+  height: 100px;
+}
+.col-3, .col-9{
+    padding: 0 0;
+}
+/* 沒辦法更改 960時的容器寬度 */
+/* @media (min-width: 768px)
+  .container {
+    min-width: 768px;
+}  */
