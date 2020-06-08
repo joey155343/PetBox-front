@@ -18,10 +18,11 @@ div.title {
 }
 
 /* 滑滑的圈圈 */
+
 .carousel-indicators li {
-    border-radius: 50%;
-    width: 8px;
-    height: 8px;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
 }
 
 .nopadding {
@@ -31,12 +32,15 @@ div.title {
 
 div.main_img {
   padding: 20, 0px;
-  max-width: 1080px;
-  /* height: 100%; */
+  max-width: 1000px;
+}
+
+img.w-100 {
+  max-height: 450px
 }
 
 div.carousel {
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 /* 五種分類圖區域 置中.固定寬度 */

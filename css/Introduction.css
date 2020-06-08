@@ -1,5 +1,5 @@
 body {
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     font-family: 'Noto Serif TC', serif;
     background-color: #F3F2F2;
 }
@@ -48,7 +48,8 @@ a:hover {
 }
 
 /* 導覽列 */
-.nav-pills .nav-link.active{
+
+.nav-pills .nav-link.active {
     background-color: #D1D1D1;
     color: #000;
 }
@@ -59,23 +60,26 @@ a:hover {
 }
 
 /* 卡片 */
-.card{
-   border: 1px solid red;
-   /* padding: 10px 10px; */
-   max-width: 270px;
+
+.card {
+    /* border: 1px solid red; */
+    /* padding: 10px 10px; */
+    max-width: 270px;
 }
-.row{
-    /* border: 1px solid blue; */
+
+.row {
+    border: 1px solid yellow;
+    margin: 0 0;
 }
-.cardview{
+
+.cardview {
     min-width: 270px;
-    margin: 0 0px;
+    margin: 10px 0px;
     padding: 0 0;
 }
+
 /* 介紹頁面 */
-.row div{
-    padding:0 0;
-}
+
 img.showimg_main {
     max-width: 720px;
     max-height: 720px;
@@ -87,6 +91,7 @@ img.showimg_preview {
 }
 
 /* 滑滑的圈圈 */
+
 .carousel-indicators li {
     border-radius: 50%;
     width: 8px;
@@ -94,16 +99,49 @@ img.showimg_preview {
 }
 
 .nopadding {
-  padding-left: 0px;
-  padding-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 div.main_img {
-  padding: 20, 0px;
-  max-width: 800px;
-  /* height: 100%; */
+    padding: 20, 0px;
+    max-width: 800px;
+    /* height: 100%; */
 }
 
-div.carousel {
-  margin: 0 auto;
+/* div.carousel {
+    margin: 0 auto;
+} */
+
+/* 介紹頁面 */
+
+div.introduction {
+    max-width: 800px;
+    margin-top: 10px;
+    /* border: 1px solid red; */
+}
+
+/* 預約按鈕 */
+
+div.introduction button.btn-primary {
+    margin-right: 30px;
+}
+
+.btn-primary {
+    border: 0;
+}
+
+/* 預約頁面 */
+
+.storebox {
+    border: 2px solid #13406A;
+    min-height: 3rem;
+}
+
+.col-sm-1, .col-sm-2, .col-sm-6, .col-sm-7 {
+    padding: 0px 0px;
+}
+
+div.storebox button.btn-primary {
+    background-color: #13406A;
 }
