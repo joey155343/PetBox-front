@@ -13,8 +13,15 @@ div.container {
 }
 /* 宣傳主圖大小 */
 div.middlerow div.carousel-item img{
-    width: 800px;
-    height: 500px;
+    /* width: 800px;
+    height: 500px; */
+}
+
+/* 滑滑的圈圈 */
+.carousel-indicators li {
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
 }
 
 div.title {
@@ -30,7 +37,7 @@ div.title {
 div.main_img {
   padding: 20, 0px;
   max-width: 1080px;
-  height: 100%;
+  /* height: 100%; */
 }
 
 div.carousel {
