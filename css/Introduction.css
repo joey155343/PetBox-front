@@ -10,6 +10,10 @@ nav.my_breadcrumb ol.breadcrumb .breadcrumb-item+.breadcrumb-item::before {
     content: ">";
 }
 
+.breadcrumb {
+    background-color: #F3F2F2;
+}
+
 nav.my_breadcrumb ol.breadcrumb .breadcrumb-item.active {
     /* color: white; */
     /* font-size: 24px; */
@@ -41,4 +45,65 @@ a {
 
 a:hover {
     COLOR: blue;
+}
+
+/* 導覽列 */
+.nav-pills .nav-link.active{
+    background-color: #D1D1D1;
+    color: #000;
+}
+
+.nav-pills .nav-link {
+    border-radius: .7rem;
+    margin: 0 30px;
+}
+
+/* 卡片 */
+.card{
+   border: 1px solid red;
+   /* padding: 10px 10px; */
+   max-width: 270px;
+}
+.row{
+    /* border: 1px solid blue; */
+}
+.cardview{
+    min-width: 270px;
+    margin: 0 0px;
+    padding: 0 0;
+}
+/* 介紹頁面 */
+.row div{
+    padding:0 0;
+}
+img.showimg_main {
+    max-width: 720px;
+    max-height: 720px;
+}
+
+img.showimg_preview {
+    max-width: 320px;
+    max-height: 320px;
+}
+
+/* 滑滑的圈圈 */
+.carousel-indicators li {
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+}
+
+.nopadding {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+div.main_img {
+  padding: 20, 0px;
+  max-width: 800px;
+  /* height: 100%; */
+}
+
+div.carousel {
+  margin: 0 auto;
 }

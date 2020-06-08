@@ -11,10 +11,10 @@ img {
 div.container {
   /* border: 1px solid red; */
 }
-/* 宣傳主圖大小 */
-div.middlerow div.carousel-item img{
-    /* width: 800px;
-    height: 500px; */
+
+div.title {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* 滑滑的圈圈 */
@@ -22,11 +22,6 @@ div.middlerow div.carousel-item img{
     border-radius: 50%;
     width: 8px;
     height: 8px;
-}
-
-div.title {
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 .nopadding {
