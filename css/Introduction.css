@@ -23,6 +23,22 @@ img.bone {
     margin-right: 5px;
 }
 
-/* 麵包屑套件 */
+/* 下拉選單 */
 
-/* @import 'antd/dist/antd.css'; */
+ul.dropdown-menu {
+    min-width: 5rem;
+}
+
+ul.dropdown-menu li {
+    text-align: center;
+}
+
+/* 改變超連結顏色 */
+
+a {
+    color: black;
+}
+
+a:hover {
+    COLOR: blue;
+}
