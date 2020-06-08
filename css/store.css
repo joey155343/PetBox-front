@@ -11,6 +11,11 @@ img {
 div.container {
   /* border: 1px solid red; */
 }
+/* 宣傳主圖大小 */
+div.middlerow div.carousel-item img{
+    width: 800px;
+    height: 500px;
+}
 
 div.title {
   margin-top: 10px;
@@ -24,8 +29,8 @@ div.title {
 
 div.main_img {
   padding: 20, 0px;
-  max-width: 800px;
-  max-height: 800px;
+  max-width: 1080px;
+  height: 100%;
 }
 
 div.carousel {
