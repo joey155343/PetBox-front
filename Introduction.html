@@ -18,14 +18,14 @@
             <li class="breadcrumb-item"><a href="store.html">店家</a></li>
             <li class="breadcrumb-item active dropdown" aria-current="page">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    寵物餐廳 <b class="caret"></b>
+                    寵物餐廳                     
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">寵物餐廳</a></li>
-                    <li><a href="#">寵物旅館</a></li>
-                    <li><a href="#">寵物美容</a></li>
-                    <li><a href="#">寵物學校</a></li>
-                    <li><a href="#">寵物醫院</a></li>
+                    <li data-store="餐廳"><a href="#">寵物餐廳</a></li>
+                    <li data-store="旅館"><a href="#">寵物旅館</a></li>
+                    <li data-store="美容"><a href="#">寵物美容</a></li>
+                    <li data-store="學校"><a href="#">寵物學校</a></li>
+                    <li data-store="醫院"><a href="#">寵物醫院</a></li>
                 </ul>
             </li>
     </nav>
@@ -52,7 +52,7 @@
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
             <!-- 推薦頁面開始 -->
             <div class="container-fluid">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center" id="storelist_card">
                     <!-- 卡片開始 -->
                     <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center cardview">
                         <div class="card" style="width: 18rem;">
@@ -219,11 +219,13 @@
                     </div>
                 </div>
             </div>
-            <!-- 店家條結束 -->
-            <!-- 表格開始 -->
-            <div class="container reservation">
+            <!-- 店家條 結束 -->
+            <!-- 表格 開始 -->
+            <!-- d-none 消失且不占空間 -->
+            <!-- 店家預約種類1 -->
+            <div class="container reservation storeType1 d-none">
                 <div class="row">
-
+                    <!-- 表格左半 -->
                     <div class="col-md-6 justify-content-end">
                         <p>
                             <label for="inputName">預約者姓名</label>
@@ -247,37 +249,179 @@
                             <input type="text" class="form-control" id="inputPersons">
                         </p>
                     </div>
-
+                    <!-- 表格右半 -->
                     <div class="col-md-6">
                         <div class="row">
-                            <div class="col-sm-4">巢狀內層左欄</div>
-                            <div class="col-sm-4">巢狀內層中欄</div>
-                            <div class="col-sm-4">巢狀內層右欄</div>
+                            <form class="form-inline">
+                                <div class="form-group mb-2 text_title">
+                                    手機號碼
+                                </div>
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <input type="password" class="form-control" id="inputPassword2"
+                                        placeholder="0900000000">
+                                </div>
+                                <button type="submit" class="btn btn-primary mb-2">發送驗證碼</button>
+                            </form>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-4">巢狀內層左欄</div>
-                            <div class="col-sm-4">巢狀內層中欄</div>
-                            <div class="col-sm-4">巢狀內層右欄</div>
-                        </div>
-                        備註文字
-                        <br>
-                        備註區塊
-                        <br>
-                        確認按鈕
-                    </div>
+                        <div class="row newsletter">
+                            <form class="form-inline">
+                                <div class="form-group mb-2 text_title">
+                                    簡訊驗證碼
+                                </div>
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <!-- is-invalid 未通過 is-valid 通過 -->
+                                    <input type="password" class="form-control " id="inputPassword2"
+                                        placeholder="123456">
+                                    <!-- 未通過即顯示invalid-feedback -->
+                                    <div class="invalid-feedback">
+                                        Please choose a username.
+                                    </div>
+                                </div>
 
+                            </form>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">備註</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary mb-2">確認預約</button>
+                    </div>
                 </div>
             </div>
-            <!-- 表格結束 -->
-            <!-- 預約頁面結束 -->
+            <!-- 店家預約種類1 結束 -->
+            <!-- 店家預約種類2-1 -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="overflow-auto servicelist" >
+                            <p>...</p>
+                            <p>...</p>
+                            <p>...</p>
+                            <p>...</p>
+                            <p>...</p>
+                            <p>...</p>
+                            <p>...</p>
+                            <p>...</p>
+                            <p>...</p>
+                            <p>...</p>
+                            <p>...</p>
+                            <p>...</p>
+                            <p>...</p>
+                            <p>...</p>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="#" class="">合計</label>
+                        <input type="text" readonly class="form-control-plaintext" id="#" value="$1,000">
+                        <button type="submit" class="btn btn-primary nextstep">下一步</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 店家預約種類2-1 結束 -->
+            <!-- 店家預約種類2-2 -->
+            <div class="container reservation storeType2-2">
+                <div class="row">
+                    <!-- 表格1/3 -->
+                    <div class="col-md-4 justify-content-end">
+                        <p>
+                            <label for="inputName">預約者姓名</label>
+                            <input type="text" id="inputName" class="form-control" placeholder="Example input">
+                        </p>
+                        <p>
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                        </p>
+                        <p>
+                            <label for="inputPersons">預約日期</label>
+                            <input type="text" class="form-control" id="inputPersons">
+                        </p>
+                        <p>
+                            <label for="inputPersons">結束日期(旅館)</label>
+                            <input type="text" class="form-control" id="inputPersons">
+                        </p>
+                        <p>
+                            <label for="inputPersons">時段(美容)</label>
+                            <input type="text" class="form-control" id="inputPersons">
+                        </p>
+                    </div>
+                    <!-- 表格2/3 -->
+                    <div class="col-md-4">
+                        <div class="form-group row">
+                            <label for="#" class="col-sm-4 col-form-label">合計</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="#" value="$1,000">
+                            </div>
+                        </div>
+                        <div class="payment_table">
+                            <label for="#" class="col-sm-4 col-form-label">付款方式</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="payment" value="現金" id="payment1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    現金
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="payment" value="paypal"
+                                    id="payment2">
+                                <label class="form-check-label" for="defaultCheck2">
+                                    paypal
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 表格3/3 -->
+                    <div class="col-md-4">
+                        <div class="row">
+                            <form class="form-inline">
+                                <div class="form-group mb-2 text_title">
+                                    手機號碼
+                                </div>
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <input type="password" class="form-control" id="inputPassword2"
+                                        placeholder="0900000000">
+                                </div>
+                                <button type="submit" class="btn btn-primary mb-2">發送驗證碼</button>
+                            </form>
+                        </div>
+                        <div class="row newsletter">
+                            <form class="form-inline">
+                                <div class="form-group mb-2 text_title">
+                                    簡訊驗證碼
+                                </div>
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <!-- is-invalid 未通過 is-valid 通過 -->
+                                    <input type="password" class="form-control " id="inputPassword2"
+                                        placeholder="123456">
+                                    <!-- 未通過即顯示invalid-feedback -->
+                                    <div class="invalid-feedback">
+                                        Please choose a username.
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">備註</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary mb-2">確認預約</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 店家預約種類2-2 結束-->
+            <!-- 表格 結束 -->
+            <!-- 預約頁面 結束 -->
         </div>
     </div>
 
 
-    <script src="./js/Introduction.js"></script>
     <script src="./vendors/jquery/jquery-3.5.0.main.js"></script>
     <script src="./vendors/popper/popper.min.js"></script>
     <script src="./vendors/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+    <script src="./js/Introduction.js"></script>
 </body>
 </body>
 
