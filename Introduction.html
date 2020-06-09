@@ -201,25 +201,74 @@
         </div>
         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
             <!-- 預約頁面開始 -->
+            <!-- 店家條開始 -->
             <div class="container">
                 <div class="row storebox align-items-center">
-
-                    <div class="col-sm-2">
+                    <div class="col-md-2 col-auto">
                         店家名稱
                     </div>
-                    <div class="col-sm-7">店家介紹</div>
-                    <div class="col-sm-2 ">
+                    <div class="col-md-7 ">店家介紹</div>
+                    <div class="col-md-2 ">
                         <div class="row">
-                            <div class="col-sm-6 ">平均消費</div>
-                            <div class="col-sm-6 ">$1,000</div>
+                            <div class="col-md-auto col-6 mx-auto">平均消費</div>
+                            <div class="col-md-auto col-6 mx-auto">$1,000</div>
                         </div>
                     </div>
-                    <div class="col-sm-1 d-flex justify-content-center">
+                    <div class="col-md-1 d-flex justify-content-center">
                         <button type="button" class="btn btn-primary">預約</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 店家條結束 -->
+            <!-- 表格開始 -->
+            <div class="container reservation">
+                <div class="row">
+
+                    <div class="col-md-6 justify-content-end">
+                        <p>
+                            <label for="inputName">預約者姓名</label>
+                            <input type="text" id="inputName" class="form-control" placeholder="Example input">
+                        </p>
+                        <p>
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                        </p>
+                        <p>
+                            <label for="inputPersons">預約日期</label>
+                            <input type="text" class="form-control" id="inputPersons">
+                        </p>
+                        <p>
+                            <label for="inputPersons">時段</label>
+                            <input type="text" class="form-control" id="inputPersons">
+                        </p>
+                        <p>
+                            <label for="inputPersons">人數</label>
+                            <input type="text" class="form-control" id="inputPersons">
+                        </p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-sm-4">巢狀內層左欄</div>
+                            <div class="col-sm-4">巢狀內層中欄</div>
+                            <div class="col-sm-4">巢狀內層右欄</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">巢狀內層左欄</div>
+                            <div class="col-sm-4">巢狀內層中欄</div>
+                            <div class="col-sm-4">巢狀內層右欄</div>
+                        </div>
+                        備註文字
+                        <br>
+                        備註區塊
+                        <br>
+                        確認按鈕
                     </div>
 
                 </div>
             </div>
+            <!-- 表格結束 -->
             <!-- 預約頁面結束 -->
         </div>
     </div>

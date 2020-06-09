@@ -138,10 +138,28 @@ div.introduction button.btn-primary {
     min-height: 3rem;
 }
 
-.col-sm-1, .col-sm-2, .col-sm-6, .col-sm-7 {
+.col-md-1, .col-md-2, .col-md-6, .col-md-7, .col-md-auto {
     padding: 0px 0px;
 }
 
 div.storebox button.btn-primary {
     background-color: #13406A;
+}
+
+/* 預約表格 */
+
+div.reservation {
+    margin-top: 20px;
+}
+
+label {
+    margin-bottom: 0rem;
+}
+
+p {
+    margin: 0 0;
+}
+
+.form-control {
+    width: 90%;
 }
