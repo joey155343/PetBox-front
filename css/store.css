@@ -35,6 +35,8 @@ div.main_img {
   max-width: 1000px;
 }
 
+/* 宣傳圖高度限制 */
+
 img.w-100 {
   max-height: 450px
 }
