@@ -37,7 +37,7 @@ window.onload = (event) => {
             },
             statusCode: {                 // 狀態碼
                 200: function (res) {
-                    console.log("200")
+                    // console.log("200")
                 },
                 404: function (res) {
                     console.log("400")
@@ -83,7 +83,7 @@ window.onload = (event) => {
                 }
                 $("#storelist_card").prepend(cards_html);
                 // 連動介紹頁籤 - 第一筆
-                reMiddlePage(data[0].store_id);
+                middlePage(data[0].store_id);
             }
         });
     }
@@ -92,7 +92,8 @@ window.onload = (event) => {
 function pageMiddle(e) {
     $("#pills-profile-tab").tab('show');
     let id = $(e).attr("name");
-    reMiddlePage(id);
+    middlePage(id);
+    bookingPage(id);
 }
 // 預約按鈕->預約頁籤
 function pageBooking(e) {
@@ -100,12 +101,11 @@ function pageBooking(e) {
     event.stopPropagation();
     // 連動介紹頁籤
     let id = $(e).attr("name");
-    reMiddlePage(id);
+    middlePage(id);
+    bookingPage(id);
 }
 // 介紹頁籤
-function reMiddlePage(store_id) {
-    console.log(store_id);
-    // location.reload()
+function middlePage(store_id) {
     $.ajax({
         url: "http://localhost:8081/TDA101G2/Store_frontController",
         type: "GET",                  // GET | POST | PUT | DELETE | PATCH
@@ -118,7 +118,7 @@ function reMiddlePage(store_id) {
         },
         statusCode: {                 // 狀態碼
             200: function (res) {
-                console.log("200")
+                // console.log("200")
             },
             404: function (res) {
                 console.log("400")
@@ -144,10 +144,44 @@ function reMiddlePage(store_id) {
                         }
                         let blob = new Blob([bytes], { type: 'image/png' });
                         src = URL.createObjectURL(blob);
-                        $("#showStore_image" + (i + 1)).attr("src", src);
                     }
+                    $("#showStore_image" + (i + 1)).attr("src", src);
                 };
             }
+        }
+    });
+}
+
+// 預約頁籤
+function bookingPage(store_id) {
+    console.log(store_id);
+    $.ajax({
+        url: "http://localhost:8081/TDA101G2/ServiceController_Ajax",
+        type: "GET",                  // GET | POST | PUT | DELETE | PATCH
+        data: {
+            "action": "getSerivceList",
+            "storeId": store_id
+        },
+        dataType: "json",             // 預期會接收到回傳資料的格式： json | xml | html
+        beforeSend: function () {       // 在 request 發送之前執行
+        },
+        statusCode: {                 // 狀態碼
+            200: function (res) {
+                // console.log("200")
+            },
+            404: function (res) {
+                console.log("400")
+            },
+            500: function (res) {
+                console.log("500")
+            }
+        },
+        error: function (xhr) {         // request 發生錯誤的話執行
+            console.log(xhr.responseText);
+        },
+
+        success: function (data) {
+            console.log(data);
         }
     });
 }
