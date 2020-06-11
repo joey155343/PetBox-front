@@ -4,7 +4,7 @@ window.onload = (event) => {
     let params = githubURL.searchParams;
     // console.log(githubURL.searchParams.toString());
     for (let pair of params.entries()) {
-        console.log(`key: ${pair[0]}, value: ${pair[1]}`)
+        // console.log(`key: ${pair[0]}, value: ${pair[1]}`)
 
         let text = $("a.dropdown-toggle")
         switch (pair[1]) {
@@ -66,7 +66,7 @@ window.onload = (event) => {
             },
 
             success: function (data) {
-                // console.log(data);
+                console.log(data);
                 // $("#storelist_card").empty();
                 let cards_html = '';
                 if (data.length != 0) {
@@ -106,19 +106,25 @@ window.onload = (event) => {
 };
 // 卡片->介紹頁籤
 function pageMiddle(e) {
+    $("#storeType2").removeClass("d-none");
+    $("#storeType2-2").addClass("d-none");
     $("#pills-profile-tab").tab('show');
     let id = $(e).attr("name");
     middlePage(id);
     bookingPage(id);
+    $("input.bookingTotal").val('0');
 }
 // 預約按鈕->預約頁籤
 function pageBooking(e) {
+    $("#storeType2").removeClass("d-none");
+    $("#storeType2-2").addClass("d-none");
     $("#pills-contact-tab").tab('show');
     event.stopPropagation();
     // 連動介紹頁籤
     let id = $(e).attr("name");
     middlePage(id);
     bookingPage(id);
+    $("input.bookingTotal").val('0');
 }
 // 介紹頁籤
 function middlePage(store_id) {
@@ -201,28 +207,84 @@ function bookingPage(store_id) {
         },
 
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             $("div.servicelist").empty();
             let td_html = "";
             if (data.length != 0) {
-                let stable = "<tr class='service_list'>"
-                    + "<td>服務編號</td>"
-                    + "<td style='text-align:center'>服務項目</td>"
-                    + "<td>價錢</td>"
-                    + "<td style='text-align:center'>數量(1-999)</td>"
-                    + "</tr>";
+                let stable =
+                    "<div class='table-responsive'>"
+                    + "<table class='table'>"
+                    + " <thead>"
+                    + "<tr>"
+                    + "<th scope='col'></th>"
+                    + "<th scope='col' style='min-width: 150px;'>服務項目</th>"
+                    + "<th scope='col' style='text-align:right'>價錢</th>"
+                    + "<th scope='col' >數量(1-999)</th>"
+                    + "</tr>"
+                    + "</thead>"
+                    + "<tbody class='service_list'></tbody>"
+                    + "</table>"
+                    + "</div>";
                 $("div.servicelist").prepend(stable);
                 $.each(data, function (index, item) {
-                    td_html += "<tr><th value=" + item.service_id + ">" + item.service_id + "</th>" +
-                        "<th value=" + item.service_detail + ">" + item.service_detail + "</th>" +
-                        "<th value=" + item.service_price + ">" + item.service_price + "</th>" +
-                        "<th>" +
-                        "<input type='text' size='20' name='pets'></input>" +
-                        "<input type='hidden' name='service_id' value=" + item.service_id + "></input>" +
-                        "</th></tr>";
+                    td_html +=
+                        "<tr>"
+                        + "<th scope='row'>" + index + "</th>"
+                        + "<td value=" + item.service_detail + ">" + item.service_detail + "</td>"
+                        + "<td value=" + item.service_price + " style='text-align:right'>" + thousandComma(item.service_price) + "</td>"
+                        + "<td id='aaa'>"
+                        + "<input type='number' value='0' min='0' max='999' step='1' data-price=" + item.service_price + "></input>"
+                        // +"<input type='text' size='20' name='pets'></input>"
+                        // +"<input type='hidden' name='service_id' value="+item.service_id+"></input>"
+                        + "</td>"
+                        + "</tr>";
                 });
-                $("tr.service_list").after(td_html);
+                $("tbody.service_list").after(td_html);
             }
+            $("input[type='number']").inputSpinner();
+            total();
         }
     });
 }
+
+function total() {
+    $("input[type^='number']").change(function () {
+        var sum = 0;
+        $("input[type^='number']").each(function () {
+            var price = $(this).data("price");
+            var count = $(this).val();
+
+            sum += price * count;
+
+            // document.getElementById("add").value = sum;
+        });
+
+        $("input.bookingTotal").val("$ " + thousandComma(sum));
+    });
+}
+// 金錢符號 每三位+,
+var thousandComma = function (number) {
+    var num = number.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+
+    while (pattern.test(num)) {
+        num = num.replace(pattern, "$1,$2");
+
+    }
+    return num;
+
+}
+// 預約 上一步.下一步
+$("button.nextstep").on("click", function () {
+    $("#storeType2").addClass("d-none");
+    $("#storeType2-2").removeClass("d-none");
+})
+$("button.previous-step").on("click", function () {
+    $("#storeType2").removeClass("d-none");
+    $("#storeType2-2").addClass("d-none");
+})
+
+// 介紹頁籤 - 預約按鈕
+$("button.booking").on("click", function () {
+    pageBooking();
+})

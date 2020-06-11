@@ -194,7 +194,7 @@
                             從今天起，做一個簡單的人，踏實務實。不沉溺幻想，不庸人自擾。要快樂，要開朗，要堅韌，要溫暖，對人要真誠。要誠懇，要坦然，要慷慨，要寬容，要有平常心。永遠對生活充滿希望，對於困境與磨難，微笑面對。多看書，看好書。少吃點，吃好點。要有夢想，即使遙遠。
                         </div>
                         <div class="col-sm-12 d-flex justify-content-end introduction">
-                            <button type="button" class="btn btn-primary">預約</button>
+                            <button type="button" class="btn btn-primary booking">預約</button>
                         </div>
                     </div>
                 </div>
@@ -294,7 +294,7 @@
             <div class="container" id="storeType2">
                 <div class="row">
                     <div class="col-md-10">
-                        <div class="overflow-auto servicelist">
+                        <div class="servicelist">
                             <p>...</p>
                             <p>...</p>
                             <p>...</p>
@@ -313,7 +313,7 @@
                     </div>
                     <div class="col-md-2">
                         <label for="#" class="">合計</label>
-                        <input type="text" readonly class="form-control-plaintext" value="$1,000">
+                        <input type="text" readonly class="form-control-plaintext bookingTotal" id="" value="$ 0">
                         <button type="submit" class="btn btn-primary nextstep">下一步</button>
                     </div>
                 </div>
@@ -321,6 +321,8 @@
             <!-- 店家預約種類2-1 結束 -->
             <!-- 店家預約種類2-2 -->
             <div class="container reservation" id="storeType2-2">
+                <button type="submit" class="btn btn-primary mb-2 usedmemberVO">套用會員資料</button>
+                <button type="submit" class="btn btn-primary mb-2 previous-step">上一步</button>
                 <div class="row">
                     <!-- 表格1/3 -->
                     <div class="col-md-4 justify-content-end">
@@ -350,7 +352,7 @@
                         <div class="form-group row">
                             <label for="#" class="col-sm-4 col-form-label">合計</label>
                             <div class="col-sm-6">
-                                <input type="text" readonly class="form-control-plaintext" value="$1,000">
+                                <input type="text" readonly class="form-control-plaintext bookingTotal" value="$ 0">
                             </div>
                         </div>
                         <div class="payment_table">
@@ -414,10 +416,10 @@
         </div>
     </div>
 
-
     <script src="./vendors/jquery/jquery-3.5.0.main.js"></script>
     <script src="./vendors/popper/popper.min.js"></script>
     <script src="./vendors/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+    <script src="./vendors/bootstrap-4.5.0-dist/js/bootstrap-input-spinner.js"></script>
     <script src="./js/Introduction.js"></script>
 </body>
 
