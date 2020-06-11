@@ -66,7 +66,7 @@ window.onload = (event) => {
             },
 
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 // $("#storelist_card").empty();
                 let cards_html = '';
                 if (data.length != 0) {
@@ -180,7 +180,6 @@ function middlePage(store_id) {
 
 // 預約頁籤
 function bookingPage(store_id) {
-    console.log(store_id);
     $.ajax({
         url: "http://localhost:8081/TDA101G2/ServiceController_Ajax",
         type: "GET",                  // GET | POST | PUT | DELETE | PATCH
@@ -286,5 +285,20 @@ $("button.previous-step").on("click", function () {
 
 // 介紹頁籤 - 預約按鈕
 $("button.booking").on("click", function () {
-    pageBooking();
+    $("#pills-contact-tab").tab('show');
+})
+
+// 確認預約按鈕
+
+$("#btn_confirm").on("click", function () {
+    var emailReg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+    let email = $(this).closest("div.reservation").find("input[type='email']");
+    let eamilval = email.val();
+    if (!emailReg.test(eamilval)) {
+        email.removeClass("is-valid")
+        email.addClass("is-invalid")
+    } else {
+        email.removeClass("is-invalid")
+        email.addClass("is-valid")
+    }
 })

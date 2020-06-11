@@ -272,7 +272,7 @@
                                 <div class="form-group mx-sm-3 mb-2">
                                     <!-- is-invalid 未通過 is-valid 通過 -->
                                     <input type="password" class="form-control " placeholder="123456">
-                                    <!-- 未通過即顯示invalid-feedback -->
+                                    <!-- is-valid 通過 is-invalid 未通過 -> 即顯示invalid-feedback -->
                                     <div class="invalid-feedback">
                                         Please choose a username.
                                     </div>
@@ -330,10 +330,14 @@
                             <label for="inputName">預約者姓名</label>
                             <input type="text" class="form-control" placeholder="Example input">
                         </p>
-                        <p>
+                        <div>
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" class="form-control" aria-describedby="emailHelp">
-                        </p>
+                            <!-- is-valid 通過 is-invalid 未通過 -> 即顯示invalid-feedback -->
+                            <div class="invalid-feedback">
+                                email格式不正確
+                            </div>
+                        </div>
                         <p>
                             <label for="inputPersons">預約日期</label>
                             <input type="text" class="form-control">
@@ -406,7 +410,7 @@
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                         <br>
-                        <button type="submit" class="btn btn-primary mb-2">確認預約</button>
+                        <button type="submit" class="btn btn-primary mb-2" id="btn_confirm">確認預約</button>
                     </div>
                 </div>
             </div>
