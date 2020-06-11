@@ -207,26 +207,26 @@
             <!-- 店家條開始 -->
             <div class="container">
                 <div class="row storebox align-items-center">
-                    <div class="col-md-2 col-auto">
+                    <div class="col-md-3 col-auto" id="stline-name">
                         店家名稱
                     </div>
-                    <div class="col-md-7 ">店家介紹</div>
-                    <div class="col-md-2 ">
+                    <div class="col-md-7" id="stline-content">店家介紹</div>
+                    <div class="col-md-2">
                         <div class="row">
-                            <div class="col-md-auto col-6 mx-auto">平均消費</div>
-                            <div class="col-md-auto col-6 mx-auto">$1,000</div>
+                            <div class="col-md-auto col-6 mx-auto">點擊數</div>
+                            <div class="col-md-auto col-6 mx-auto" id="stline-clicks">1,000</div>
                         </div>
                     </div>
-                    <div class="col-md-1 d-flex justify-content-center">
+                    <!-- <div class="col-md-1 d-flex justify-content-center">
                         <button type="button" class="btn btn-primary">預約</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <!-- 店家條 結束 -->
             <!-- 表格 開始 -->
             <!-- d-none 消失且不占空間 -->
             <!-- 店家預約種類1 -->
-            <div class="container reservation storeType1 d-none">
+            <div class="container reservation d-none" id="storeType1">
                 <div class="row">
                     <!-- 表格左半 -->
                     <div class="col-md-6 justify-content-end">
@@ -291,7 +291,7 @@
             </div>
             <!-- 店家預約種類1 結束 -->
             <!-- 店家預約種類2-1 -->
-            <div class="container">
+            <div class="container" id="storeType2">
                 <div class="row">
                     <div class="col-md-10">
                         <div class="overflow-auto servicelist">
@@ -320,7 +320,7 @@
             </div>
             <!-- 店家預約種類2-1 結束 -->
             <!-- 店家預約種類2-2 -->
-            <div class="container reservation storeType2-2">
+            <div class="container reservation" id="storeType2-2">
                 <div class="row">
                     <!-- 表格1/3 -->
                     <div class="col-md-4 justify-content-end">
