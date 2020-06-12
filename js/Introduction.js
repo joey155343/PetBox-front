@@ -106,8 +106,17 @@ window.onload = (event) => {
 };
 // 卡片->介紹頁籤
 function pageMiddle(e) {
-    $("#storeType2").removeClass("d-none");
-    $("#storeType2-2").addClass("d-none");
+    let githubURL = new URL(window.location.href);
+    let params = githubURL.searchParams;
+    for (let pair of params.entries()) {
+        if (pair[1] == 'restaurant' || pair[1] == 'hospital') {
+            $("#storeType2").addClass("d-none");
+            $("#storeType2-2").addClass("d-none");
+        } else {
+            $("#storeType2").removeClass("d-none");
+            $("#storeType2-2").addClass("d-none");
+        }
+    }
     $("#pills-profile-tab").tab('show');
     let id = $(e).attr("name");
     middlePage(id);
@@ -116,8 +125,17 @@ function pageMiddle(e) {
 }
 // 預約按鈕->預約頁籤
 function pageBooking(e) {
-    $("#storeType2").removeClass("d-none");
-    $("#storeType2-2").addClass("d-none");
+    let githubURL = new URL(window.location.href);
+    let params = githubURL.searchParams;
+    for (let pair of params.entries()) {
+        if (pair[1] == 'restaurant' || pair[1] == 'hospital') {
+            $("#storeType2").addClass("d-none");
+            $("#storeType2-2").addClass("d-none");
+        } else {
+            $("#storeType2").removeClass("d-none");
+            $("#storeType2-2").addClass("d-none");
+        }
+    }
     $("#pills-contact-tab").tab('show');
     event.stopPropagation();
     // 連動介紹頁籤
@@ -290,7 +308,8 @@ $("button.booking").on("click", function () {
 
 // 確認預約按鈕
 
-$("#btn_confirm").on("click", function () {
+$("button.btn_confirm").on("click", function () {
+    // 檢查eamil格式
     var emailReg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
     let email = $(this).closest("div.reservation").find("input[type='email']");
     let eamilval = email.val();
