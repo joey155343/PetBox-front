@@ -16,18 +16,27 @@ window.onload = (event) => {
                 break;
             case 'hostel':
                 text.text("寵物旅館");
+                $("input.input-date-normal").closest("div").removeClass("d-none");
+                $("input.input-date-checkout").closest("div").removeClass("d-none");
+                $("input.input-date-gromming").closest("div").addClass("d-none");
                 $("#storeType1").addClass("d-none");
                 $("#storeType2").removeClass("d-none");
                 $("#storeType2-2").addClass("d-none");
                 break;
             case 'grooming':
                 text.text("寵物美容");
+                $("input.input-date-normal").closest("div").addClass("d-none");
+                $("input.input-date-checkout").closest("div").addClass("d-none");
+                $("input.input-date-gromming").closest("div").removeClass("d-none");
                 $("#storeType1").addClass("d-none");
                 $("#storeType2").removeClass("d-none");
                 $("#storeType2-2").addClass("d-none");
                 break;
             case 'school':
                 text.text("寵物學校");
+                $("input.input-date-normal").closest("div").removeClass("d-none");
+                $("input.input-date-checkout").closest("div").addClass("d-none");
+                $("input.input-date-gromming").closest("div").addClass("d-none");
                 $("#storeType1").addClass("d-none");
                 $("#storeType2").removeClass("d-none");
                 $("#storeType2-2").addClass("d-none");
@@ -137,6 +146,7 @@ function pageBooking(e) {
         }
     }
     $("#pills-contact-tab").tab('show');
+    // $("#pills-contact-tab").toggleClass('show');
     event.stopPropagation();
     // 連動介紹頁籤
     let id = $(e).attr("name");
@@ -249,7 +259,7 @@ function bookingPage(store_id) {
                         + "<th scope='row'>" + index + "</th>"
                         + "<td value=" + item.service_detail + ">" + item.service_detail + "</td>"
                         + "<td value=" + item.service_price + " style='text-align:right'>" + thousandComma(item.service_price) + "</td>"
-                        + "<td id='aaa'>"
+                        + "<td>"
                         + "<input type='number' value='0' min='0' max='999' step='1' data-price=" + item.service_price + "></input>"
                         // +"<input type='text' size='20' name='pets'></input>"
                         // +"<input type='hidden' name='service_id' value="+item.service_id+"></input>"
@@ -258,16 +268,17 @@ function bookingPage(store_id) {
                 });
                 $("tbody.service_list").after(td_html);
             }
-            $("input[type='number']").inputSpinner();
+            $("div.table-responsive input[type='number']").inputSpinner();
             total();
         }
     });
 }
+$("input.num-spinner").inputSpinner();
 
 function total() {
-    $("input[type^='number']").change(function () {
+    $("div.table-responsive input[type^='number']").change(function () {
         var sum = 0;
-        $("input[type^='number']").each(function () {
+        $("div.table-responsive input[type^='number']").each(function () {
             var price = $(this).data("price");
             var count = $(this).val();
 
@@ -306,9 +317,37 @@ $("button.booking").on("click", function () {
     $("#pills-contact-tab").tab('show');
 })
 
+// 大吳老師- 日期套件
+$.datetimepicker.setLocale('zh');
+$('input.f_date1').datetimepicker({
+    theme: '',              //theme: 'dark',
+    timepicker: true,       //timepicker:true,(有時分秒)
+    step: 60,                //step: 60 (這是timepicker的預設間隔60分鐘)
+    format: 'Y-m-d H:i',         //format:'Y-m-d H:i:s','Y-m-d',
+    // value: '<%=hiredate%>', // value:   new Date(),
+    // disabledDates: ['2020/06/08', '2020/06/09', '2020/06/10'], // 去除特定不含
+    // startDate: '2020/06/10',  // 起始日
+    minDate: '-1970-01-01', // 去除今日(不含)之前
+    // maxDate: '+2030-01-01'  // 去除今日(不含)之後
+});
+$.datetimepicker.setLocale('zh');
+$('input.f_date2').datetimepicker({
+    theme: '',              //theme: 'dark',
+    timepicker: false,       //timepicker:true,(有時分秒)
+    step: 60,                //step: 60 (這是timepicker的預設間隔60分鐘)
+    format: 'Y-m-d',         //format:'Y-m-d H:i:s','Y-m-d',
+    value: '<%=hiredate%>', // value:   new Date(),
+    // disabledDates: ['2020/06/08', '2020/06/09', '2020/06/10'], // 去除特定不含
+    // startDate: '2020/06/10',  // 起始日
+    minDate: '-1970-01-01', // 去除今日(不含)之前
+    // maxDate: '+2030-01-01'  // 去除今日(不含)之後
+});
+
 // 確認預約按鈕
 
 $("button.btn_confirm").on("click", function () {
+    let current = $(this).closest("div.reservation");
+
     // 檢查eamil格式
     var emailReg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
     let email = $(this).closest("div.reservation").find("input[type='email']");
@@ -320,4 +359,61 @@ $("button.btn_confirm").on("click", function () {
         email.removeClass("is-invalid")
         email.addClass("is-valid")
     }
+
+    var phoneReg= /[0-9]{10}/
+    let phone = current.find("input[type='phone-number']");
+    let phoneval = phone.val();
+    if (!phoneReg.test(phoneval)) {
+        phone.removeClass("is-valid")
+        phone.addClass("is-invalid")
+    } else {
+        phone.removeClass("is-invalid")
+        phone.addClass("is-valid")
+    }
+    let name = current.find("input.input-name");
+    let nameval = name.val();
+    let date = current.find("input.input-date");
+    let dateval = date.val();
+    let person = current.find("input.input-persons");
+    let personval = person.val();
+    let note = current.find("input.input-note");
+    let noteval = note.val();
+    console.log(nameval);
+    console.log(eamilval);
+    console.log(dateval);
+    console.log(personval);
+    console.log(phoneval);
+    console.log(noteval);
+    
+    let obj = {store_id: "S07001", member_id: "", store_order_name: nameval, store_order_email: eamilval, store_order_phone_num: phoneval, store_order_persons:personval, store_order_note:noteval, store_order_date_time:dateval}
+    var myJson = JSON.stringify(obj);
+    console.log(JSON.parse(myJson));
+    $.ajax({
+        url: "http://localhost:8081/TDA101G2/Store_frontController",
+        type: "POST",                  // GET | POST | PUT | DELETE | PATCH
+        data: {
+            "action": "Booking",
+            data: myJson
+        },
+        dataType: "json",             // 預期會接收到回傳資料的格式： json | xml | html
+        beforeSend: function () {       // 在 request 發送之前執行
+        },
+        statusCode: {                 // 狀態碼
+            200: function (res) {
+                // console.log("200")
+            },
+            404: function (res) {
+                console.log("400")
+            },
+            500: function (res) {
+                console.log("500")
+            }
+        },
+        error: function (xhr) {         // request 發生錯誤的話執行
+            console.log(xhr.responseText);
+        },
+
+        success: function (data) {
+        }
+    });
 })

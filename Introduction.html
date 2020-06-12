@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="./vendors/bootstrap-4.5.0-dist/css/bootstrap.min.css">
     <link href="./css/Introduction.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./vendors/datetimepicker/jquery.datetimepicker.css" />
+
 </head>
 
 <body>
@@ -232,7 +234,7 @@
                     <div class="col-md-6 justify-content-end">
                         <p>
                             <label for="inputName">預約者姓名</label>
-                            <input type="text" class="form-control" placeholder="Example input">
+                            <input type="text" class="form-control input-name" placeholder="王小明">
                         </p>
                         <div>
                             <label for="exampleInputEmail1">Email address</label>
@@ -242,18 +244,15 @@
                                 email格式不正確
                             </div>
                         </div>
-                        <p>
-                            <label for="inputPersons">預約日期</label>
-                            <input type="text" class="form-control">
-                        </p>
-                        <p>
-                            <label for="inputPersons">時段</label>
-                            <input type="text" class="form-control">
-                        </p>
-                        <p>
+                        <div>
+                            <label for="inputdate">預約日期 & 時段</label>
+                            <input type="text" class="form-control f_date1 input-date">
+                            <!-- 大吳老師套件 f_date1 -->
+                        </div>
+                        <div>
                             <label for="inputPersons">人數</label>
-                            <input type='number' value='0' min='0' max='999' step='1'></input>
-                        </p>
+                            <input type='number' class="num-spinner input-persons" value='0' min='0' max='999' step='1'></input>
+                        </div>
                     </div>
                     <!-- 表格右半 -->
                     <div class="col-md-6">
@@ -263,7 +262,11 @@
                                     手機號碼
                                 </div>
                                 <div class="form-group mx-sm-3 mb-2">
-                                    <input type="password" class="form-control" placeholder="0900000000">
+                                    <input type="phone-number" class="form-control" placeholder="0912345678">
+                                    <!-- is-valid 通過 is-invalid 未通過 -> 即顯示invalid-feedback -->
+                                    <div class="invalid-feedback">
+                                        手機格式不正確
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-2">發送驗證碼</button>
                             </form>
@@ -275,10 +278,10 @@
                                 </div>
                                 <div class="form-group mx-sm-3 mb-2">
                                     <!-- is-invalid 未通過 is-valid 通過 -->
-                                    <input type="password" class="form-control " placeholder="123456">
+                                    <input type="password" class="form-control" placeholder="123456">
                                     <!-- is-valid 通過 is-invalid 未通過 -> 即顯示invalid-feedback -->
                                     <div class="invalid-feedback">
-                                        Please choose a username.
+                                        驗證碼錯誤
                                     </div>
                                 </div>
 
@@ -286,7 +289,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">備註</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control input-note" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                         <br>
                         <button type="submit" class="btn btn-primary mb-2 btn_confirm">確認預約</button>
@@ -332,7 +335,7 @@
                     <div class="col-md-4 justify-content-end">
                         <p>
                             <label for="inputName">預約者姓名</label>
-                            <input type="text" class="form-control" placeholder="Example input">
+                            <input type="text" class="form-control input-name" placeholder="王小明">
                         </p>
                         <div>
                             <label for="exampleInputEmail1">Email address</label>
@@ -342,18 +345,20 @@
                                 email格式不正確
                             </div>
                         </div>
-                        <p>
+                        <div>
                             <label for="inputPersons">預約日期</label>
-                            <input type="text" class="form-control">
-                        </p>
-                        <p>
-                            <label for="inputPersons">結束日期(旅館)</label>
-                            <input type="text" class="form-control">
-                        </p>
-                        <p>
-                            <label for="inputPersons">時段(美容)</label>
-                            <input type="text" class="form-control">
-                        </p>
+                            <input type="text" class="form-control f_date2 input-date-normal">
+                            <!-- 大吳老師套件 f_date1 -->
+                        </div>
+                        <div>
+                            <label for="inputPersons">結束日期</label>
+                            <input type="text" class="form-control f_date2 input-date-checkout">
+                            <!-- 大吳老師套件 f_date1 -->
+                        </div>
+                        <div>
+                            <label for="inputPersons">預約日期 & 時段</label>
+                            <input type="text" class="form-control f_date1 input-date-gromming">
+                        </div>
                     </div>
                     <!-- 表格2/3 -->
                     <div class="col-md-4">
@@ -388,7 +393,11 @@
                                     手機號碼
                                 </div>
                                 <div class="form-group mx-sm-3 mb-2">
-                                    <input type="password" class="form-control" placeholder="0900000000">
+                                    <input type="phone-number" class="form-control" placeholder="0912345678">
+                                    <!-- is-valid 通過 is-invalid 未通過 -> 即顯示invalid-feedback -->
+                                    <div class="invalid-feedback">
+                                        手機格式不正確
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-2">發送驗證碼</button>
                             </form>
@@ -403,7 +412,7 @@
                                     <input type="password" class="form-control " placeholder="123456">
                                     <!-- 未通過即顯示invalid-feedback -->
                                     <div class="invalid-feedback">
-                                        Please choose a username.
+                                        驗證碼錯誤
                                     </div>
                                 </div>
 
@@ -411,7 +420,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">備註</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control input-note" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                         <br>
                         <button type="submit" class="btn btn-primary mb-2 btn_confirm">確認預約</button>
@@ -428,6 +437,8 @@
     <script src="./vendors/popper/popper.min.js"></script>
     <script src="./vendors/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
     <script src="./vendors/bootstrap-4.5.0-dist/js/bootstrap-input-spinner.js"></script>
+    <script src="./vendors/datetimepicker/jquery.datetimepicker.full.js"></script>
+    <!-- <script src="./vendors/datetimepicker/jquery.js"></script> -->
     <script src="./js/Introduction.js"></script>
 </body>
 
