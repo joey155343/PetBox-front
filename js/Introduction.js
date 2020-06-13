@@ -197,7 +197,7 @@ function middlePage(store_id) {
                     }
                     $("#showStore_image" + (i + 1)).attr("src", src);
                 };
-                // 介紹頁籤 - 店家條
+                // 預約頁籤 - 店家條
                 $("#stline-name").text(data.store_name);
                 $("#stline-content").text(data.store_introduction);
                 $("#stline-clicks").text(data.store_clicks);
@@ -240,8 +240,8 @@ function bookingPage(store_id) {
             if (data.length != 0) {
                 let stable =
                     "<div class='table-responsive'>"
-                    + "<table class='table'>"
-                    + " <thead>"
+                    + "<table class='table>"
+                    + "<thead>"
                     + "<tr>"
                     + "<th scope='col'></th>"
                     + "<th scope='col' style='min-width: 150px;'>服務項目</th>"
@@ -256,7 +256,7 @@ function bookingPage(store_id) {
                 $.each(data, function (index, item) {
                     td_html +=
                         "<tr>"
-                        + "<th scope='row'>" + index + "</th>"
+                        + "<th scope='row' data-service_id=" + item.service_id + " class='getServiceId'>" + index + "</th>"
                         + "<td value=" + item.service_detail + ">" + item.service_detail + "</td>"
                         + "<td value=" + item.service_price + " style='text-align:right'>" + thousandComma(item.service_price) + "</td>"
                         + "<td>"
@@ -346,6 +346,8 @@ $('input.f_date2').datetimepicker({
 // 確認預約按鈕
 
 $("button.btn_confirm").on("click", function () {
+    let checkmail = false;
+    let checkphone = false;
     let current = $(this).closest("div.reservation");
 
     // 檢查eamil格式
@@ -355,28 +357,36 @@ $("button.btn_confirm").on("click", function () {
     if (!emailReg.test(eamilval)) {
         email.removeClass("is-valid")
         email.addClass("is-invalid")
+        checkmail = false;
     } else {
         email.removeClass("is-invalid")
         email.addClass("is-valid")
+        checkmail = true;
     }
 
-    var phoneReg= /[0-9]{10}/
+    var phoneReg = /[0-9]{10}/
     let phone = current.find("input[type='phone-number']");
     let phoneval = phone.val();
     if (!phoneReg.test(phoneval)) {
         phone.removeClass("is-valid")
         phone.addClass("is-invalid")
+        checkphone = false;
     } else {
         phone.removeClass("is-invalid")
         phone.addClass("is-valid")
+        checkphone = true;
     }
+    let storeId = current.find(".getStoreId");
+    let storeIdval = storeId.data("store_id");
     let name = current.find("input.input-name");
     let nameval = name.val();
     let date = current.find("input.input-date");
     let dateval = date.val();
+    let date2 = current.find("input.input-date-checkout");
+    let date2val = date2.val();
     let person = current.find("input.input-persons");
     let personval = person.val();
-    let note = current.find("input.input-note");
+    let note = current.find("textarea.input-note");
     let noteval = note.val();
     console.log(nameval);
     console.log(eamilval);
@@ -384,36 +394,60 @@ $("button.btn_confirm").on("click", function () {
     console.log(personval);
     console.log(phoneval);
     console.log(noteval);
-    
-    let obj = {store_id: "S07001", member_id: "", store_order_name: nameval, store_order_email: eamilval, store_order_phone_num: phoneval, store_order_persons:personval, store_order_note:noteval, store_order_date_time:dateval}
-    var myJson = JSON.stringify(obj);
-    console.log(JSON.parse(myJson));
-    $.ajax({
-        url: "http://localhost:8081/TDA101G2/Store_frontController",
-        type: "POST",                  // GET | POST | PUT | DELETE | PATCH
-        data: {
-            "action": "Booking",
-            data: myJson
-        },
-        dataType: "json",             // 預期會接收到回傳資料的格式： json | xml | html
-        beforeSend: function () {       // 在 request 發送之前執行
-        },
-        statusCode: {                 // 狀態碼
-            200: function (res) {
-                // console.log("200")
-            },
-            404: function (res) {
-                console.log("400")
-            },
-            500: function (res) {
-                console.log("500")
-            }
-        },
-        error: function (xhr) {         // request 發生錯誤的話執行
-            console.log(xhr.responseText);
-        },
 
-        success: function (data) {
-        }
+    let array = [];
+    $("#storeType2").find("th.getServiceId").each(function (index, item) {
+        let serviceId = $(item).data("service_id");
+        let pets = $(item).siblings("td").find("input").val();
+        let obj = { service_id: serviceId, order_detail_pets: pets }
+        array.push(obj);
     });
+
+    let obj = { store_id: storeIdval, member_id: "", store_order_name: nameval, store_order_email: eamilval, store_order_phone_num: phoneval, store_order_persons: personval, store_order_note: noteval, store_order_date_time: dateval, store_order_end_date: date2val, detail_list: array }
+    var myJson = JSON.stringify(obj);
+    // console.log(JSON.parse(myJson));
+
+    if (checkmail == true && checkphone == true) {
+        $.ajax({
+            url: "http://localhost:8081/TDA101G2/Store_frontController",
+            type: "POST",                  // GET | POST | PUT | DELETE | PATCH
+            data: {
+                "action": "Booking",
+                data: myJson
+            },
+            dataType: "text",             // 預期會接收到回傳資料的格式： json | xml | html
+            beforeSend: function () {       // 在 request 發送之前執行
+            },
+            statusCode: {                 // 狀態碼
+                200: function (res) {
+                    // console.log("200")
+                },
+                404: function (res) {
+                    console.log("400")
+                },
+                500: function (res) {
+                    console.log("500")
+                }
+            },
+            error: function (xhr) {         // request 發生錯誤的話執行
+                console.log(xhr.responseText);
+            },
+
+            success: function (data) {
+                let reult = data.toString()
+                let text = reult.substr(data.indexOf("=") + 1);
+                if (data.search("預約成功") != -1) {
+                    $("#staticBackdropLabel").text("預約成功")
+                    $("#staticBackdrop").find("div.modal-body").text("訂單編號： " + text);
+                    $('#staticBackdrop').modal('show');
+                } else if (data.search("預約失敗") != -1) {
+                    $("#staticBackdropLabel").text("預約失敗")
+                    $("#staticBackdrop").find("div.modal-body").text(text);
+                    $('#staticBackdrop').modal('show');
+                } else {
+                    console.log(data);
+                }
+            }
+        });
+    }
 })

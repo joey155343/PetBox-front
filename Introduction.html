@@ -206,6 +206,26 @@
         </div>
         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
             <!-- 預約頁面開始 -->
+            <!-- Modal 確認預約按鈕->跳出視窗 -->
+            <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">好的</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- 店家條開始 -->
             <div class="container">
                 <div class="row storebox align-items-center">
@@ -251,7 +271,8 @@
                         </div>
                         <div>
                             <label for="inputPersons">人數</label>
-                            <input type='number' class="num-spinner input-persons" value='0' min='0' max='999' step='1'></input>
+                            <input type='number' class="num-spinner input-persons" value='0' min='0' max='999'
+                                step='1'></input>
                         </div>
                     </div>
                     <!-- 表格右半 -->
@@ -289,7 +310,8 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">備註</label>
-                            <textarea class="form-control input-note" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control input-note" id="exampleFormControlTextarea1"
+                                rows="3"></textarea>
                         </div>
                         <br>
                         <button type="submit" class="btn btn-primary mb-2 btn_confirm">確認預約</button>
@@ -347,7 +369,7 @@
                         </div>
                         <div>
                             <label for="inputPersons">預約日期</label>
-                            <input type="text" class="form-control f_date2 input-date-normal">
+                            <input type="text" class="form-control f_date2 input-date-normal input-date">
                             <!-- 大吳老師套件 f_date1 -->
                         </div>
                         <div>
@@ -420,7 +442,8 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">備註</label>
-                            <textarea class="form-control input-note" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control input-note" id="exampleFormControlTextarea1"
+                                rows="3"></textarea>
                         </div>
                         <br>
                         <button type="submit" class="btn btn-primary mb-2 btn_confirm">確認預約</button>
