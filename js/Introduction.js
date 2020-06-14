@@ -241,10 +241,10 @@ function bookingPage(store_id) {
             if (data.length != 0) {
                 let stable =
                     "<div class='table-responsive'>"
-                    + "<table class='table>"
+                    + "<table class='table'>"
                     + "<thead>"
                     + "<tr>"
-                    + "<th scope='col'></th>"
+                    + "<th scope='col' ></th>"
                     + "<th scope='col' style='min-width: 150px;'>服務項目</th>"
                     + "<th scope='col' style='text-align:right'>價錢</th>"
                     + "<th scope='col' >數量(1-999)</th>"
