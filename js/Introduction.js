@@ -199,6 +199,7 @@ function middlePage(store_id) {
                 };
                 // 預約頁籤 - 店家條
                 $("#stline-name").text(data.store_name);
+                $("#stline-name").attr("data-store_id", data.store_id)
                 $("#stline-content").text(data.store_introduction);
                 $("#stline-clicks").text(data.store_clicks);
             }
@@ -336,7 +337,7 @@ $('input.f_date2').datetimepicker({
     timepicker: false,       //timepicker:true,(有時分秒)
     step: 60,                //step: 60 (這是timepicker的預設間隔60分鐘)
     format: 'Y-m-d',         //format:'Y-m-d H:i:s','Y-m-d',
-    value: '<%=hiredate%>', // value:   new Date(),
+    // value: '<%=hiredate%>', // value:   new Date(),
     // disabledDates: ['2020/06/08', '2020/06/09', '2020/06/10'], // 去除特定不含
     // startDate: '2020/06/10',  // 起始日
     minDate: '-1970-01-01', // 去除今日(不含)之前
@@ -348,6 +349,7 @@ $('input.f_date2').datetimepicker({
 $("button.btn_confirm").on("click", function () {
     let checkmail = false;
     let checkphone = false;
+    let checkdate = false;
     let current = $(this).closest("div.reservation");
 
     // 檢查eamil格式
@@ -376,24 +378,31 @@ $("button.btn_confirm").on("click", function () {
         phone.addClass("is-valid")
         checkphone = true;
     }
-    let storeId = current.find(".getStoreId");
-    let storeIdval = storeId.data("store_id");
+    let storeId = $("#stline-name").data("store_id");
     let name = current.find("input.input-name");
     let nameval = name.val();
-    let date = current.find("input.input-date");
-    let dateval = date.val();
+    let date = null;
+    let dateval = null;
+    if ($("a.dropdown-toggle").html().search("寵物美容") != -1) {
+        date = current.find("input.input-date-gromming");
+        dateval = date.val();
+    } else {
+        date = current.find("input.input-date");
+        dateval = date.val();
+    }
     let date2 = current.find("input.input-date-checkout");
     let date2val = date2.val();
     let person = current.find("input.input-persons");
     let personval = person.val();
     let note = current.find("textarea.input-note");
     let noteval = note.val();
-    console.log(nameval);
-    console.log(eamilval);
+    // console.log(storeId);
+    // console.log(nameval);
+    // console.log(eamilval);
     console.log(dateval);
-    console.log(personval);
-    console.log(phoneval);
-    console.log(noteval);
+    // console.log(personval);
+    // console.log(phoneval);
+    // console.log(noteval);
 
     let array = [];
     $("#storeType2").find("th.getServiceId").each(function (index, item) {
@@ -403,7 +412,7 @@ $("button.btn_confirm").on("click", function () {
         array.push(obj);
     });
 
-    let obj = { store_id: storeIdval, member_id: "", store_order_name: nameval, store_order_email: eamilval, store_order_phone_num: phoneval, store_order_persons: personval, store_order_note: noteval, store_order_date_time: dateval, store_order_end_date: date2val, detail_list: array }
+    let obj = { store_id: storeId, member_id: "", store_order_name: nameval, store_order_email: eamilval, store_order_phone_num: phoneval, store_order_persons: personval, store_order_note: noteval, store_order_date_time: dateval, store_order_end_date: date2val, detail_list: array }
     var myJson = JSON.stringify(obj);
     // console.log(JSON.parse(myJson));
 
